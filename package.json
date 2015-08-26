@@ -1,12 +1,17 @@
 {
   "name": "@mohayonao/frame-sequencer",
   "description": "frame sequencer",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "mohayonao <mohayonao@gmail.com>",
   "bugs": {
     "url": "https://github.com/mohayonao/frame-sequencer/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@mohayonao/append-if-not-exists": "^1.0.0",
+    "@mohayonao/defaults": "^1.0.0",
+    "@mohayonao/event-emitter": "^1.0.1",
+    "@mohayonao/remove-if-exists": "^1.0.0"
+  },
   "devDependencies": {
     "babel": "^5.8.21",
     "babel-eslint": "^4.1.0",
