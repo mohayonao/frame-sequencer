@@ -1,0 +1,24 @@
+{
+  "name": "@mohayonao/frame-sequencer",
+  "description": "frame sequencer",
+  "version": "0.0.0",
+  "author": "mohayonao <mohayonao@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/mohayonao/frame-sequencer/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "package.json",
+    "README.md",
+    "index.js",
+    "lib"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohayonao/frame-sequencer/"
+  },
+  "scripts": {}
+}
