@@ -63,7 +63,9 @@ export default class FrameSequencer extends EventEmitter {
     this.elements = elements.filter(element => t1 <= element.stopTime);
 
     if (data.length) {
-      this.emit("data", data);
+      let playbackTime = t0;
+
+      this.emit("data", { playbackTime, data });
     }
   }
 

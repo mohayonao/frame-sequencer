@@ -166,7 +166,8 @@ describe("FrameSequencer", function() {
       assert(this.sequencer.onPause.args[0][1] === 2);
 
       assert(this.onData.callCount === 1);
-      assert.deepEqual(this.onData.args[0][0], [ 101, 102 ]);
+      assert(this.onData.args[0][0].playbackTime === 1);
+      assert.deepEqual(this.onData.args[0][0].data, [ 101, 102 ]);
     });
     it("works (02.000 -> 03.000)", () => {
       this.sequencer.update(2, 3);
@@ -193,7 +194,8 @@ describe("FrameSequencer", function() {
       assert(this.sequencer.onPause.args[0][1] === 3);
 
       assert(this.onData.callCount === 1);
-      assert.deepEqual(this.onData.args[0][0], [ 102, 103 ]);
+      assert(this.onData.args[0][0].playbackTime === 2);
+      assert.deepEqual(this.onData.args[0][0].data, [ 102, 103 ]);
     });
     it("works (03.000 -> 04.000)", () => {
       this.sequencer.update(3, 4);
@@ -220,7 +222,8 @@ describe("FrameSequencer", function() {
       assert(this.sequencer.onPause.args[0][1] === 4);
 
       assert(this.onData.callCount === 1);
-      assert.deepEqual(this.onData.args[0][0], [ 103, 104 ]);
+      assert(this.onData.args[0][0].playbackTime === 3);
+      assert.deepEqual(this.onData.args[0][0].data, [ 103, 104 ]);
     });
     it("works (04.000 -> 05.000)", () => {
       this.sequencer.update(4, 5);
