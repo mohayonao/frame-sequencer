@@ -1,5 +1,5 @@
 import EventEmitter from "@mohayonao/event-emitter";
-import defaults from "@mohayonao/defaults";
+import defaults from "@mohayonao/utils/defaults";
 
 export default class FrameElement extends EventEmitter {
   constructor(opts = {}) {

@@ -1,7 +1,7 @@
 import EventEmitter from "@mohayonao/event-emitter";
-import defaults from "@mohayonao/defaults";
-import appendIfNotExists from "@mohayonao/append-if-not-exists";
-import removeIfExists from "@mohayonao/remove-if-exists";
+import defaults from "@mohayonao/utils/defaults";
+import appendIfNotExists from "@mohayonao/utils/appendIfNotExists";
+import removeIfExists from "@mohayonao/utils/removeIfExists";
 
 export default class FrameSequencer extends EventEmitter {
   constructor(opts = {}) {
