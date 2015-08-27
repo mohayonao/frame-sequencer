@@ -6,18 +6,9 @@ import FrameSequencer from "../src/FrameSequencer";
 describe("FrameSequencer", function() {
   describe("constructor(otps = {})", () => {
     it("works", () => {
-      let sequencer = new FrameSequencer({ interval: 2 });
-
-      assert(sequencer instanceof FrameSequencer);
-      assert(sequencer.interval === 2);
-      assert(Array.isArray(sequencer.elements));
-      assert(Array.isArray(sequencer.actives));
-    });
-    it("works without options", () => {
       let sequencer = new FrameSequencer();
 
       assert(sequencer instanceof FrameSequencer);
-      assert(sequencer.interval === 1);
       assert(Array.isArray(sequencer.elements));
       assert(Array.isArray(sequencer.actives));
     });
@@ -79,7 +70,7 @@ describe("FrameSequencer", function() {
   });
   describe("update(t0:number, t1: number): void", function() {
     before(() => {
-      this.sequencer = new FrameSequencer({ interval: 1 });
+      this.sequencer = new FrameSequencer();
       this.element1 = new FrameElement({ startTime: 1.5, stopTime: 3.5 });
       this.element2 = new FrameElement({ startTime: 2.5 });
       this.onData = sinon.spy();

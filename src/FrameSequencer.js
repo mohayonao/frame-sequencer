@@ -1,13 +1,11 @@
 import EventEmitter from "@mohayonao/event-emitter";
-import defaults from "@mohayonao/utils/defaults";
 import appendIfNotExists from "@mohayonao/utils/appendIfNotExists";
 import removeIfExists from "@mohayonao/utils/removeIfExists";
 
 export default class FrameSequencer extends EventEmitter {
-  constructor(opts = {}) {
+  constructor() {
     super();
 
-    this.interval = defaults(opts.interval, 1);
     this.elements = [];
     this.actives = [];
   }
@@ -27,12 +25,11 @@ export default class FrameSequencer extends EventEmitter {
   }
 
   update(t0, t1) {
-    let actives = this.actives;
-
     this.onResume(t0, t1);
 
     let data = [];
     let elements = this.elements.sort((a, b) => a.layer - b.layer);
+    let actives = this.actives;
 
     for (let i = 0; i < elements.length; i++) {
       let element = elements[i];
@@ -58,8 +55,6 @@ export default class FrameSequencer extends EventEmitter {
       }
     }
 
-    this.onPause(t0, t1);
-
     this.elements = elements.filter(element => t1 <= element.stopTime);
 
     if (data.length) {
@@ -67,6 +62,8 @@ export default class FrameSequencer extends EventEmitter {
 
       this.emit("data", { playbackTime, data });
     }
+
+    this.onPause(t0, t1);
   }
 
   onResume() {}
