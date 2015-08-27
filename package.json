@@ -1,16 +1,14 @@
 {
   "name": "@mohayonao/frame-sequencer",
   "description": "frame sequencer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "mohayonao <mohayonao@gmail.com>",
   "bugs": {
     "url": "https://github.com/mohayonao/frame-sequencer/issues"
   },
   "dependencies": {
-    "@mohayonao/append-if-not-exists": "^1.0.0",
-    "@mohayonao/defaults": "^1.0.0",
     "@mohayonao/event-emitter": "^1.0.1",
-    "@mohayonao/remove-if-exists": "^1.0.0"
+    "@mohayonao/utils": "^0.1.1"
   },
   "devDependencies": {
     "babel": "^5.8.21",
@@ -19,7 +17,7 @@
     "espower-babel": "^3.3.0",
     "isparta": "^3.0.3",
     "mocha": "^2.2.5",
-    "power-assert": "^0.11.0",
+    "power-assert": "^1.0.0",
     "sinon": "^1.16.1"
   },
   "files": [
