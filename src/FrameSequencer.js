@@ -25,12 +25,11 @@ export default class FrameSequencer extends EventEmitter {
   }
 
   update(t0, t1) {
-    let actives = this.actives;
-
     this.onResume(t0, t1);
 
     let data = [];
     let elements = this.elements.sort((a, b) => a.layer - b.layer);
+    let actives = this.actives;
 
     for (let i = 0; i < elements.length; i++) {
       let element = elements[i];
@@ -56,8 +55,6 @@ export default class FrameSequencer extends EventEmitter {
       }
     }
 
-    this.onPause(t0, t1);
-
     this.elements = elements.filter(element => t1 <= element.stopTime);
 
     if (data.length) {
@@ -65,6 +62,8 @@ export default class FrameSequencer extends EventEmitter {
 
       this.emit("data", { playbackTime, data });
     }
+
+    this.onPause(t0, t1);
   }
 
   onResume() {}
