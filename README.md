@@ -7,10 +7,7 @@
 
 ## API
 ### FrameSequencer
-- `constructor(opts = {})`
-
-#### Instance attributes
-- `interval: number`
+- `constructor()`
 
 #### Instance methods
 - `add(element: FrameElement): boolean`
