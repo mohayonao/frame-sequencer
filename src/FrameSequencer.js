@@ -1,13 +1,11 @@
 import EventEmitter from "@mohayonao/event-emitter";
-import defaults from "@mohayonao/utils/defaults";
 import appendIfNotExists from "@mohayonao/utils/appendIfNotExists";
 import removeIfExists from "@mohayonao/utils/removeIfExists";
 
 export default class FrameSequencer extends EventEmitter {
-  constructor(opts = {}) {
+  constructor() {
     super();
 
-    this.interval = defaults(opts.interval, 1);
     this.elements = [];
     this.actives = [];
   }
