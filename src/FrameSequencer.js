@@ -24,7 +24,7 @@ export default class FrameSequencer extends EventEmitter {
     this.elements.splice(0);
   }
 
-  update(t0, t1) {
+  update(t0, t1 = t0) {
     this.onResume(t0, t1);
 
     let elements = this.elements.sort((a, b) => a.layer - b.layer);
