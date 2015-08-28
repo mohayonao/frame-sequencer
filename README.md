@@ -13,7 +13,7 @@
 - `add(element: FrameElement): boolean`
 - `remove(element: FrameElement): boolean`
 - `removeAll(): void`
-- `update(t0: number, t1: number): void`
+- `update(t0: number, t1: number = t0): void`
 - `onResume(t0: number, t1: number): void`
 - `onStartElement(element: FrameElement): void`
 - `onStopElement(element: FrameElement): void`
@@ -26,7 +26,7 @@
 - `layer: number`
 - `startTime: number`
 - `stopTime: number`
-- `parameters: object`
+- `data: object`
 
 #### Instance methods
 - `stateAtTime(time: number): string`

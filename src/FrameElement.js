@@ -8,7 +8,7 @@ export default class FrameElement extends EventEmitter {
     this.layer = defaults(opts.layer, 0);
     this.startTime = defaults(opts.startTime, 0);
     this.stopTime = defaults(opts.stopTime, Infinity);
-    this.parameters = defaults(opts.parameters, {});
+    this.data = defaults(opts.data, {});
   }
 
   stateAtTime(time) {

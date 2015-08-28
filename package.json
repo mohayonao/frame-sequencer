@@ -1,7 +1,7 @@
 {
   "name": "@mohayonao/frame-sequencer",
   "description": "frame sequencer",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "mohayonao <mohayonao@gmail.com>",
   "bugs": {
     "url": "https://github.com/mohayonao/frame-sequencer/issues"
