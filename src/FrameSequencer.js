@@ -36,11 +36,13 @@ export default class FrameSequencer extends EventEmitter {
 
       if (t0 <= element.stopTime && element.startTime < t1) {
         if (appendIfNotExists(actives, element)) {
-          element.init(t0, t1);
+          element.init(element.startTime);
           this.onStartElement(element);
         }
 
-        let result = element.update(t0, t1);
+        let t00 = Math.max(t0, element.startTime);
+        let t11 = Math.min(element.stopTime, t1);
+        let result = element.update(t00, t11);
 
         if (Array.isArray(result)) {
           data.push(...result);
@@ -49,7 +51,7 @@ export default class FrameSequencer extends EventEmitter {
 
       if (element.stopTime < t1) {
         if (removeIfExists(actives, element)) {
-          element.dispose(t0, t1);
+          element.dispose(element.stopTime);
           this.onStopElement(element);
         }
       }

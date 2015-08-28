@@ -145,8 +145,11 @@ describe("FrameSequencer", function() {
       assert(this.sequencer.onStartElement.args[0][0] === this.element1);
 
       assert(this.element1.init.callCount === 1);
+      assert(this.element1.init.args[0][0] === this.element1.startTime);
       assert(this.element2.init.callCount === 0);
       assert(this.element1.update.callCount === 1);
+      assert(this.element1.update.args[0][0] === 1.5);
+      assert(this.element1.update.args[0][1] === 2);
       assert(this.element2.update.callCount === 0);
       assert(this.element1.dispose.callCount === 0);
       assert(this.element2.dispose.callCount === 0);
@@ -158,7 +161,7 @@ describe("FrameSequencer", function() {
 
       assert(this.onData.callCount === 1);
       assert(this.onData.args[0][0].playbackTime === 1);
-      assert.deepEqual(this.onData.args[0][0].data, [ 101, 102 ]);
+      assert.deepEqual(this.onData.args[0][0].data, [ 101.5, 102 ]);
     });
     it("works (02.000 -> 03.000)", () => {
       this.sequencer.update(2, 3);
@@ -174,8 +177,13 @@ describe("FrameSequencer", function() {
 
       assert(this.element1.init.callCount === 0);
       assert(this.element2.init.callCount === 1);
+      assert(this.element2.init.args[0][0] === this.element2.startTime);
       assert(this.element1.update.callCount === 1);
+      assert(this.element1.update.args[0][0] === 2);
+      assert(this.element1.update.args[0][1] === 3);
       assert(this.element2.update.callCount === 1);
+      assert(this.element2.update.args[0][0] === 2.5);
+      assert(this.element2.update.args[0][1] === 3);
       assert(this.element1.dispose.callCount === 0);
       assert(this.element2.dispose.callCount === 0);
 
@@ -202,8 +210,13 @@ describe("FrameSequencer", function() {
       assert(this.element1.init.callCount === 0);
       assert(this.element2.init.callCount === 0);
       assert(this.element1.update.callCount === 1);
+      assert(this.element1.update.args[0][0] === 3);
+      assert(this.element1.update.args[0][1] === 3.5);
       assert(this.element2.update.callCount === 1);
+      assert(this.element2.update.args[0][0] === 3);
+      assert(this.element2.update.args[0][1] === 4);
       assert(this.element1.dispose.callCount === 1);
+      assert(this.element1.dispose.args[0][0] === this.element1.stopTime);
       assert(this.element2.dispose.callCount === 0);
 
       assert(this.sequencer.onStopElement.callCount === 1);
@@ -214,7 +227,7 @@ describe("FrameSequencer", function() {
 
       assert(this.onData.callCount === 1);
       assert(this.onData.args[0][0].playbackTime === 3);
-      assert.deepEqual(this.onData.args[0][0].data, [ 103, 104 ]);
+      assert.deepEqual(this.onData.args[0][0].data, [ 103, 103.5 ]);
     });
     it("works (04.000 -> 05.000)", () => {
       this.sequencer.update(4, 5);
@@ -231,6 +244,8 @@ describe("FrameSequencer", function() {
       assert(this.element2.init.callCount === 0);
       assert(this.element1.update.callCount === 0);
       assert(this.element2.update.callCount === 1);
+      assert(this.element2.update.args[0][0] === 4);
+      assert(this.element2.update.args[0][1] === 5);
       assert(this.element1.dispose.callCount === 0);
       assert(this.element2.dispose.callCount === 0);
 
