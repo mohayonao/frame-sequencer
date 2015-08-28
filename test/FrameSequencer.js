@@ -73,9 +73,6 @@ describe("FrameSequencer", function() {
       this.sequencer = new FrameSequencer();
       this.element1 = new FrameElement({ startTime: 1.5, stopTime: 3.5 });
       this.element2 = new FrameElement({ startTime: 2.5 });
-      this.onData = sinon.spy();
-
-      this.sequencer.on("data", this.onData);
 
       this.sequencer.onResume = sinon.spy(this.sequencer.onResume.bind(this.sequencer));
       this.sequencer.onStartElement = sinon.spy(this.sequencer.onStartElement.bind(this.sequencer));
@@ -84,7 +81,7 @@ describe("FrameSequencer", function() {
 
       this.element1.init = sinon.spy();
       this.element2.init = sinon.spy();
-      this.element1.update = sinon.spy((t0, t1) => [ t0 + 100, t1 + 100 ]);
+      this.element1.update = sinon.spy();
       this.element2.update = sinon.spy();
       this.element1.dispose = sinon.spy();
       this.element2.dispose = sinon.spy();
@@ -93,8 +90,6 @@ describe("FrameSequencer", function() {
       this.sequencer.add(this.element2);
     });
     beforeEach(() => {
-      this.onData.reset();
-
       this.sequencer.onResume.reset();
       this.sequencer.onStartElement.reset();
       this.sequencer.onStopElement.reset();
@@ -129,8 +124,6 @@ describe("FrameSequencer", function() {
       assert(this.sequencer.onPause.callCount === 1);
       assert(this.sequencer.onPause.args[0][0] === 0);
       assert(this.sequencer.onPause.args[0][1] === 1);
-
-      assert(this.onData.callCount === 0);
     });
     it("works (01.000 -> 02.000)", () => {
       this.sequencer.update(1, 2);
@@ -158,10 +151,6 @@ describe("FrameSequencer", function() {
       assert(this.sequencer.onPause.callCount === 1);
       assert(this.sequencer.onPause.args[0][0] === 1);
       assert(this.sequencer.onPause.args[0][1] === 2);
-
-      assert(this.onData.callCount === 1);
-      assert(this.onData.args[0][0].playbackTime === 1);
-      assert.deepEqual(this.onData.args[0][0].data, [ 101.5, 102 ]);
     });
     it("works (02.000 -> 03.000)", () => {
       this.sequencer.update(2, 3);
@@ -191,10 +180,6 @@ describe("FrameSequencer", function() {
       assert(this.sequencer.onPause.callCount === 1);
       assert(this.sequencer.onPause.args[0][0] === 2);
       assert(this.sequencer.onPause.args[0][1] === 3);
-
-      assert(this.onData.callCount === 1);
-      assert(this.onData.args[0][0].playbackTime === 2);
-      assert.deepEqual(this.onData.args[0][0].data, [ 102, 103 ]);
     });
     it("works (03.000 -> 04.000)", () => {
       this.sequencer.update(3, 4);
@@ -224,10 +209,6 @@ describe("FrameSequencer", function() {
       assert(this.sequencer.onPause.callCount === 1);
       assert(this.sequencer.onPause.args[0][0] === 3);
       assert(this.sequencer.onPause.args[0][1] === 4);
-
-      assert(this.onData.callCount === 1);
-      assert(this.onData.args[0][0].playbackTime === 3);
-      assert.deepEqual(this.onData.args[0][0].data, [ 103, 103.5 ]);
     });
     it("works (04.000 -> 05.000)", () => {
       this.sequencer.update(4, 5);
@@ -253,8 +234,6 @@ describe("FrameSequencer", function() {
       assert(this.sequencer.onPause.callCount === 1);
       assert(this.sequencer.onPause.args[0][0] === 4);
       assert(this.sequencer.onPause.args[0][1] === 5);
-
-      assert(this.onData.callCount === 0);
     });
   });
 });
