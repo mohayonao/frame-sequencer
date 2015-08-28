@@ -7,14 +7,14 @@ describe("FrameElement", () => {
       let layer = 1;
       let startTime = 2;
       let stopTime = 3;
-      let parameters = { a: 4, b: 5 };
-      let element = new FrameElement({ layer, startTime, stopTime, parameters });
+      let data = { a: 4, b: 5 };
+      let element = new FrameElement({ layer, startTime, stopTime, data });
 
       assert(element instanceof FrameElement);
       assert(element.layer === 1);
       assert(element.startTime === startTime);
       assert(element.stopTime === stopTime);
-      assert(element.parameters === parameters);
+      assert(element.data === data);
     });
     it("works without options", () => {
       let element = new FrameElement();
@@ -23,7 +23,7 @@ describe("FrameElement", () => {
       assert(element.layer === 0);
       assert(element.startTime === 0);
       assert(element.stopTime === Infinity);
-      assert.deepEqual(element.parameters, {});
+      assert.deepEqual(element.data, {});
     });
   });
   describe("#stateAtTime(time: number): string", () => {
@@ -38,12 +38,12 @@ describe("FrameElement", () => {
       assert(element.stateAtTime(5) === "ended");
     });
   });
-  describe("#init(t0: number, t1: number): void", () => {
+  describe("#init(startTime: number): void", () => {
     it("works", () => {
       let element = new FrameElement();
 
       assert.doesNotThrow(() => {
-        element.init(0, 1);
+        element.init(0);
       });
     });
   });
@@ -56,12 +56,12 @@ describe("FrameElement", () => {
       });
     });
   });
-  describe("#dispose(t0: number, t1: number): void", () => {
+  describe("#dispose(stopTime: number): void", () => {
     it("works", () => {
       let element = new FrameElement();
 
       assert.doesNotThrow(() => {
-        element.dispose(0, 1);
+        element.dispose(1);
       });
     });
   });
